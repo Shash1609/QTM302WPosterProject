@@ -1,0 +1,128 @@
+---
+title: "Netflix"
+author: "Shash"
+date: "11/30/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidyverse)
+library(tidyr)
+library(ggplot2)
+library(lubridate)
+library(dplyr)
+
+```
+```{r}
+install.packages("devtools")
+library(devtools)
+```
+```{r}
+install_github("Shash1609/project")
+```
+```{r}
+remotes::install_github("karthik/holepunch", type = "binary")
+```
+
+```{r}
+
+#/var/folders/zr/yx7pnh8s0sggys9t2tzd0cf00000gn/T//RtmphOYPrS/downloaded_packages
+diabetes <- read.csv("diabetespreg.csv")
+diabetes
+```
+```{r}
+ggplot(diabetes, aes(Glucose,Age,color = Outcome)) +
+  geom_point() +labs(title ="FIGURE 3: The effects of Age & Glucose on Diabetes " ,x='Glucose Leves',y='Age')
+```
+```{r}
+diabetes %>%
+  filter(Glucose==0)%>%
+  count()
+diabetes %>% 
+  filter(BloodPressure==0) %>%
+  count()
+diabetes %>%
+  filter(SkinThickness==0)%>%
+  count()
+diabetes %>% 
+  filter(BMI==0) %>%
+  count()
+diabetes %>% 
+  filter(Insulin==0) %>%
+  count()
+```
+```{r}
+new_diabetes<-diabetes %>%
+  mutate(Glucose = ifelse(Glucose == 0, 117.0, Glucose), 
+         BloodPressure= ifelse(BloodPressure==0, 72.00, BloodPressure),
+         BMI= ifelse(BMI ==0,32.00, BMI),
+         SkinThickness= ifelse(SkinThickness ==0, 23.00, SkinThickness),
+         Insulin = ifelse(Insulin == 0, 30.5, Insulin))
+head(new_diabetes)
+```
+```{r}
+n1<-new_diabetes%>%
+  mutate(new_diabetes,diabetes_result=ifelse(Outcome=='Yes','positive','negative'))
+head(n1)
+```
+```{r}
+diabetes_result2<-n1%>%
+                    group_by(diabetes_result)%>%
+                    count(diabetes_result)
+head(diabetes_result2)
+```
+```{r}
+ggplot(diabetes_result2)+geom_col(mapping = aes(x=diabetes_result,y=n,fill=diabetes_result))+
+  labs(title ="Positive & Negative cases for Diabetes " ,x='patients Tested',y='No. of patients')
+```
+```{r}
+ggplot(n1)+geom_boxplot(mapping = aes(x=diabetes_result,y=Age,fill=diabetes_result))+
+  labs(title ="FIGURE 1: How does Age affect chances of getting diabetes? " ,x='Diabetes result',y='Age of the paitents')
+
+```
+```{r}
+ggplot(n1)+geom_boxplot(mapping = aes(x=diabetes_result,y=BMI,fill=diabetes_result))+
+  labs(title ="BMI vs Diabetes " ,x='Diabetes results',y='BMI (weight in kg/(height in m)^2)')
+```
+```{r}
+ggplot(n1)+geom_boxplot(mapping = aes(x=diabetes_result,y=Glucose,fill=diabetes_result))+
+  labs(title ="FIGURE 2: How does Glucose levels affect the chances of getting diabetes?" ,x='Diabetes results',y='Glucose in 2hr Conc.')
+```
+```{r}
+ggplot(n1)+geom_boxplot(mapping = aes(x=diabetes_result,y=Insulin,fill=diabetes_result))+
+  labs(title ="Insulin vs Diabetes " ,x='Diabetes results',y='Insulin (mu U/ml)')
+view(new_diabetes)
+```
+
+```{r}
+ggplot(diabetes, aes(x = Pregnancies,color = Outcome)) +
+  geom_histogram() +
+  labs(
+    title = "Distribution of Graduation Rate",
+    x = "Pregnancies (%)",
+    y = "Number of Patients",
+  )
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
