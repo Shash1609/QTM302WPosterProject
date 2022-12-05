@@ -20,9 +20,7 @@ library(dplyr)
 install.packages("devtools")
 library(devtools)
 ```
-```{r}
-install_github("Shash1609/project")
-```
+
 ```{r}
 remotes::install_github("karthik/holepunch", type = "binary")
 ```
