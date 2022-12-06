@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 title: "Shash QTM302W"
+=======
+title: "QTM302W"
+>>>>>>> f4baf13239951296ba01b502a701fc58aff1392d
 author: "Shash"
 date: "11/30/2022"
 output: html_document
