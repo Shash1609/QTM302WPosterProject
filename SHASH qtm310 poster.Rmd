@@ -1,5 +1,5 @@
 ---
-title: "Netflix"
+title: "Shash QTM302W"
 author: "Shash"
 date: "11/30/2022"
 output: html_document
@@ -9,20 +9,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r}
-library(tidyverse)
-library(tidyr)
+install.packages("ggplot2")
+install.packages("lubridate")
+install.packages("dplyr")
+```
+
+```{r}
 library(ggplot2)
 library(lubridate)
 library(dplyr)
-
-```
-```{r}
-install.packages("devtools")
-library(devtools)
-```
-
-```{r}
-remotes::install_github("karthik/holepunch", type = "binary")
 ```
 
 ```{r}
@@ -92,7 +87,7 @@ ggplot(n1)+geom_boxplot(mapping = aes(x=diabetes_result,y=Glucose,fill=diabetes_
 ```{r}
 ggplot(n1)+geom_boxplot(mapping = aes(x=diabetes_result,y=Insulin,fill=diabetes_result))+
   labs(title ="Insulin vs Diabetes " ,x='Diabetes results',y='Insulin (mu U/ml)')
-view(new_diabetes)
+
 ```
 
 ```{r}
