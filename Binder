@@ -1,0 +1,4 @@
+ Link - https://mybinder.org/v2/gh/Shash1609/QTM302WPosterProject/HEAD
+ markdown file : [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Shash1609/QTM302WPosterProject/HEAD)
+ .rst file : .. image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/Shash1609/QTM302WPosterProject/HEAD
