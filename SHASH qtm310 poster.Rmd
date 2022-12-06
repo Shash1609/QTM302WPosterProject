@@ -1,5 +1,5 @@
 ---
-title: "Netflix"
+title: "QTM302W"
 author: "Shash"
 date: "11/30/2022"
 output: html_document
